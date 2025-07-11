@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.9.xsd">
+
+    <!-- Include all changelog files -->
+    <include file="db/changelog/changes/001-create-user-table.xml"/>
+    <include file="db/changelog/changes/002-create-merchant-table.xml"/>
+    <include file="db/changelog/changes/003-create-product-table.xml"/>
+    <include file="db/changelog/changes/004-create-order-table.xml"/>
+    <include file="db/changelog/changes/005-create-order-item-table.xml"/>
+    <include file="db/changelog/changes/006-create-order-message-table.xml"/>
+    <include file="db/changelog/changes/007-remove-pay-time-and-logistics-company.xml"/>
+    <include file="db/changelog/changes/008-add-back-pay-time.xml"/>
+    <include file="db/changelog/changes/009-update-user-password-length.xml"/>
+
+</databaseChangeLog> 

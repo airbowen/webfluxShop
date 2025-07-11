@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.9.xsd">
+
+    <changeSet id="004-create-order-table" author="store-system">
+        <createTable tableName="order">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="order_code" type="VARCHAR(50)">
+                <constraints unique="true" nullable="false"/>
+            </column>
+            <column name="user_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="merchant_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="total_amount" type="DECIMAL(10,2)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="status" type="VARCHAR(20)" defaultValue="PENDING">
+                <constraints nullable="false"/>
+            </column>
+            <column name="pay_time" type="TIMESTAMP">
+                <constraints nullable="true"/>
+            </column>
+            <column name="logistics_company" type="VARCHAR(100)">
+                <constraints nullable="true"/>
+            </column>
+            <column name="tracking_no" type="VARCHAR(100)">
+                <constraints nullable="true"/>
+            </column>
+            <column name="create_time" type="TIMESTAMP" defaultValueComputed="CURRENT_TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addForeignKeyConstraint baseTableName="order" baseColumnNames="user_id"
+                                constraintName="fk_order_user"
+                                referencedTableName="user" referencedColumnNames="id"/>
+
+        <addForeignKeyConstraint baseTableName="order" baseColumnNames="merchant_id"
+                                constraintName="fk_order_merchant"
+                                referencedTableName="merchant" referencedColumnNames="id"/>
+
+        <createIndex tableName="order" indexName="idx_order_order_code">
+            <column name="order_code"/>
+        </createIndex>
+        <createIndex tableName="order" indexName="idx_order_user_id">
+            <column name="user_id"/>
+        </createIndex>
+        <createIndex tableName="order" indexName="idx_order_merchant_id">
+            <column name="merchant_id"/>
+        </createIndex>
+        <createIndex tableName="order" indexName="idx_order_status">
+            <column name="status"/>
+        </createIndex>
+    </changeSet>
+
+</databaseChangeLog> 
